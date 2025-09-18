@@ -33,12 +33,15 @@ import {
   Database,
   HelpCircle
 } from "lucide-react";
-import { useTheme } from "./ThemeContext";
+import { useTheme } from "../context/ThemeContext";
 import logo from "../assets/logo.jpg"
+import { useNavigate } from "react-router-dom";
+
 
 export function DashboardContent(){
 
       const { isDark } = useTheme();
+      const navigator = useNavigate();
   
   return (
     <div className="h-full overflow-y-auto hide-scrollbar ">
@@ -118,7 +121,8 @@ export function DashboardContent(){
               <p className={`${isDark ? "text-gray-400" : "text-slate-600"} text-sm leading-relaxed mb-4`}>
                 Streamline the student enrollment process with automated form validation, document management, and real-time status tracking.
               </p>
-              <button className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:shadow-lg transition-all duration-200 transform hover:scale-105">
+              <button onClick={()=>navigator('/newadmission')}
+               className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:shadow-lg transition-all duration-200 transform hover:scale-105">
                 Start Enrollment
               </button>
             </div>
@@ -126,7 +130,8 @@ export function DashboardContent(){
         </div>
 
         {/* Add Teachers Card */}
-        <div className={`${isDark ? 'bg-gradient-to-br from-gray-800 to-gray-900 border-gray-700' : 'bg-gradient-to-br from-white to-slate-50 border-slate-200'} rounded-2xl border p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 group`}>
+        <div 
+        className={`${isDark ? 'bg-gradient-to-br from-gray-800 to-gray-900 border-gray-700' : 'bg-gradient-to-br from-white to-slate-50 border-slate-200'} rounded-2xl border p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 group`}>
           <div className="flex items-start space-x-4">
             <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
               <Users className="text-white" size={32} />
@@ -136,7 +141,8 @@ export function DashboardContent(){
               <p className={`${isDark ? 'text-gray-400' : 'text-slate-600'} text-sm leading-relaxed mb-4`}>
                 Advanced teacher management with performance analytics, automated scheduling, and professional development tracking.
               </p>
-              <button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:shadow-lg transition-all duration-200 transform hover:scale-105">
+              <button onClick={()=>navigator('/allteacher')}
+               className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:shadow-lg transition-all duration-200 transform hover:scale-105">
                 Manage Teachers
               </button>
             </div>

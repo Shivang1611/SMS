@@ -32,7 +32,7 @@ import {
 } from 'lucide-react';
 import Sidebar from '../../../component/common/sidebar';
 import Header from '../../../component/common/header';
-import { useTheme } from '../../../component/ThemeContext';
+import { useTheme } from '../../../context/ThemeContext';
 import AddTeacherForm from '../../../component/AddTeacherForm';
 
 export default function Allteacher() {

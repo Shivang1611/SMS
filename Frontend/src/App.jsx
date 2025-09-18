@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import AdminDashboard from './pages/home/dashboard/AdminDashboard';
 import NewAdmission from './pages/home/Admission_Management/newAdmission';
 import Allteacher from './pages/home/Teacher_Management/Allteacher';
+import AllStudents from './pages/home/StudentManagement/AllStudents';
 
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="admindashboard" element={<AdminDashboard />} />
         <Route path="newadmission" element={<NewAdmission />} />
         <Route path="allteacher" element={<Allteacher />} />
+        <Route path="allstudents" element={<AllStudents />} />
         </Routes>
         </BrowserRouter>
   )

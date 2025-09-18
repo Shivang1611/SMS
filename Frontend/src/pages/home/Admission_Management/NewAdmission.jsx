@@ -23,13 +23,18 @@ import {
   Plus,
   UserCheck
 } from 'lucide-react';
-import { useTheme } from '../../../component/ThemeContext';
+import { useTheme } from '../../../context/ThemeContext';
 import Header from '../../../component/common/header';
 import Sidebar from '../../../component/common/sidebar';
+import { useStudents } from '../../../context/StudentContext';
+import { useNavigate } from 'react-router-dom'
+
 
 
 export default function NewAdmission() {
   const { isDark } = useTheme();
+  const { addStudent } = useStudents();
+  const navigate = useNavigate();
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -194,6 +199,7 @@ export default function NewAdmission() {
         return null;
     }
   };
+  
 
   const renderStudentInfo = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -968,13 +974,75 @@ export default function NewAdmission() {
     </div>
   );
 
-  const handleSubmit = () => {
-    // Here you would typically send the data to your backend
-    console.log('Form Data:', formData);
-    console.log('Uploaded Files:', uploadedFiles);
-    
-    // Show success message or redirect
-    alert('Application submitted successfully!');
+   const handleSubmit = () => {
+    try {
+      // Add the student to the global state
+      const newStudent = addStudent(formData);
+      
+      console.log('Student added successfully:', newStudent);
+      
+      // Show success message
+      alert(`Student ${formData.firstName} ${formData.lastName} has been successfully enrolled with ID: ${newStudent.studentId}`);
+      
+      // Reset form or navigate to student list
+      // You can redirect to All Students page here if needed
+      navigate('/allstudents'); 
+       
+      // Reset form data
+      setFormData({
+        firstName: '',
+        lastName: '',
+        dateOfBirth: '',
+        gender: '',
+        nationality: '',
+        religion: '',
+        bloodGroup: '',
+        studentPhoto: null,
+        email: '',
+        phone: '',
+        address: '',
+        city: '',
+        state: '',
+        zipCode: '',
+        country: '',
+        fatherName: '',
+        fatherOccupation: '',
+        fatherPhone: '',
+        fatherEmail: '',
+        motherName: '',
+        motherOccupation: '',
+        motherPhone: '',
+        motherEmail: '',
+        guardianName: '',
+        guardianRelation: '',
+        guardianPhone: '',
+        guardianEmail: '',
+        previousSchool: '',
+        lastClass: '',
+        admissionClass: '',
+        subjects: [],
+        academicYear: '2024-25',
+        documents: {
+          birthCertificate: null,
+          previousMarksheet: null,
+          transferCertificate: null,
+          casteCertificate: null,
+          incomeCertificate: null,
+          medicalCertificate: null
+        }
+      });
+      
+      setUploadedFiles({});
+      setCurrentStep(1);
+      console.log('Before adding student:', students.length);
+  
+       console.log('After adding student:', students.length);
+      
+      
+    } catch (error) {
+      console.error('Error submitting application:', error);
+      alert('Error submitting application. Please try again.');
+    }
   };
 
   return (

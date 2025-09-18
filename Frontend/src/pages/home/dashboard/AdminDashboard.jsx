@@ -22,7 +22,7 @@ import logo from '../../../assets/logo.jpg';
 import Sidebar from '../../../component/common/sidebar';
 import Header from '../../../component/common/header';
 import { DashboardContent } from '../../../component/DashboardContent';
-import { useTheme } from '../../../component/ThemeContext';
+import { useTheme } from '../../../context/ThemeContext';
 
 
 export default function AdminDashboard() {

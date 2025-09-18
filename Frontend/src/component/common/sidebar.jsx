@@ -36,7 +36,7 @@ import {
   ChevronsRight
 } from "lucide-react";
 import logo from "../../assets/logo.jpg"
-import { useTheme } from "../ThemeContext";
+import { useTheme } from "../../context/ThemeContext";
 
 export default function Sidebar({ 
   selectedSection, 
@@ -98,7 +98,7 @@ export default function Sidebar({
       icon: GraduationCap,
       expandable: true,
       subItems: [
-        { id: 'all-students', label: 'All Students', icon: Users, href: '/students/all' },
+        { id: 'all-students', label: 'All Students', icon: Users, href: '/allstudents' },
         { id: 'student-profiles', label: 'Student Profiles', icon: UserCheck, href: '/students/profiles' },
         { id: 'attendance', label: 'Attendance', icon: CheckCircle, href: '/students/attendance' },
         { id: 'student-performance', label: 'Performance', icon: TrendingUp, href: '/students/performance' },

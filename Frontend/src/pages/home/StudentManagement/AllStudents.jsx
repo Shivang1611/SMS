@@ -83,8 +83,8 @@ export default function AllStudents() {
       <div className="flex flex-col flex-1 min-w-0 overflow-hidden transition-all duration-300">
         <Header isDark={isDark} className="w-full flex items-center justify-between px-4 shadow-sm transition-all duration-300" />
         
-        <div className="flex-1 overflow-y-auto p-8">
-          {/* Header Section */}
+        <div className="flex-1 p-8 overflow-y-scroll  [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+         
           <div className="mb-8">
             <div className="flex items-center justify-between">
               <div>

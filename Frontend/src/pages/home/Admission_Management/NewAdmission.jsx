@@ -1034,9 +1034,6 @@ export default function NewAdmission() {
       
       setUploadedFiles({});
       setCurrentStep(1);
-      console.log('Before adding student:', students.length);
-  
-       console.log('After adding student:', students.length);
       
       
     } catch (error) {
@@ -1062,7 +1059,7 @@ export default function NewAdmission() {
         {/* Header */}
         
         <Header isDark={isDark} className="w-full flex items-center justify-between px-4 shadow-sm transition-all duration-300"  />
-       <div className="flex-1 overflow-y-auto p-8">
+       <div className="flex-1 p-8 overflow-y-scroll  [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
         <div className="mb-8  ">
           <h1 className={`text-3xl font-bold ${isDark ? 'text-white' : 'text-gray-900'} mb-2`}>
             New Student Admission

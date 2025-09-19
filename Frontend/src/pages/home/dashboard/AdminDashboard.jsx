@@ -52,7 +52,7 @@ export default function AdminDashboard() {
               <Header className="w-full flex items-center justify-between px-4 shadow-sm transition-all duration-300" />
             
        
-              <main className={`flex-1 overflow-y-auto p-8 transition-all duration-300  hide-scrollbar ${
+              <main className={`flex-1  overflow-y-scroll p-8 transition-all duration-300   [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden ${
                 isDark
                   ? "bg-gray-800 text-white"
                   : "bg-gradient-to-br from-slate-50 to-blue-50"

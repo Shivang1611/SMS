@@ -44,7 +44,7 @@ export function DashboardContent(){
       const navigator = useNavigate();
   
   return (
-    <div className="h-full overflow-y-auto hide-scrollbar ">
+    <div className="h-full  overflow-y-scroll  [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden ">
       {/* Welcome Section */}
       <div className="mb-8">
         <h1 className={`text-4xl font-bold ${isDark ? 'text-white' : 'text-slate-800'} mb-2`}>

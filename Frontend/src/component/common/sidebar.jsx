@@ -37,6 +37,8 @@ import {
 } from "lucide-react";
 import logo from "../../assets/logo.jpg"
 import { useTheme } from "../../context/ThemeContext";
+import { useNavigate } from "react-router-dom";
+
 
 export default function Sidebar({ 
   selectedSection, 
@@ -45,7 +47,7 @@ export default function Sidebar({
   setIsSidebarExpanded 
 }) {
    const { isDark } = useTheme();
-   
+   const navigate = useNavigate();
   const [expandedSections, setExpandedSections] = useState({
     admissions: false,
     students: false,
@@ -83,6 +85,7 @@ export default function Sidebar({
       expandable: true,
       subItems: [
         { id: 'new-admission', label: 'New Admission', icon: UserPlus, href: '/newadmission' },
+        { id: 'admit-bulk-students', label: 'Admit Bulk Students', icon: Users, href: '/admissions/students' },
         { id: 'admission-forms', label: 'Application Forms', icon: FileText, href: '/admissions/forms' },
         { id: 'pending-approvals', label: 'Pending Approvals', icon: Clock, href: '/admissions/pending' },
         { id: 'approved-students', label: 'Approved Students', icon: CheckCircle, href: '/admissions/approved' },
@@ -100,11 +103,30 @@ export default function Sidebar({
       subItems: [
         { id: 'all-students', label: 'All Students', icon: Users, href: '/allstudents' },
         { id: 'student-profiles', label: 'Student Profiles', icon: UserCheck, href: '/students/profiles' },
+        { id: 'student-birthdays', label: 'Students Birthdays', icon: BookOpen, href: '/students/enrollment' },
         { id: 'attendance', label: 'Attendance', icon: CheckCircle, href: '/students/attendance' },
         { id: 'student-performance', label: 'Performance', icon: TrendingUp, href: '/students/performance' },
-        { id: 'disciplinary', label: 'Disciplinary Records', icon: Shield, href: '/students/disciplinary' }
+        { id: 'student-transfer', label: 'Student Transfer', icon: MapPin, href: '/students/health' },
       ]
     },
+    // create parents account section
+    {
+       id: 'Parents',
+      label: 'Parents Account',
+      icon: Users,
+      expandable: true,
+      subItems: [
+        { id: 'manage-accounts', label: 'Manage Accounts', icon: Users, href: '/allstudents' },
+        { id: 'account-request', label: 'Account Request', icon: UserCheck, href: '/students/profiles' },
+        
+      ]
+    },
+
+
+
+
+
+
     {
       id: 'teachers',
       label: 'Teacher Management',
@@ -288,7 +310,7 @@ export default function Sidebar({
             <div className="w-12 h-12 rounded-full flex items-center justify-center shadow-lg">
               <img src={logo} 
               alt="logo"
-              className=" object-cover mb-4 rounded-full shadow-md"
+              className=" object-cover  rounded-full shadow-md"
                />
             </div>
             <div className={`overflow-hidden transition-all ${isSidebarExpanded ? "w-40" : "w-0"}`}>
@@ -321,7 +343,8 @@ export default function Sidebar({
             </div>
             <LogOut 
               size={16} 
-              className="text-indigo-300 hover:text-white cursor-pointer transition-colors" 
+              onClick={()=>navigate('/login')}
+              className={`text-indigo-300 hover:text-white cursor-pointer transition-colors ${isSidebarExpanded ? "size-5" : "size-5"}` }
             />
           </div>
           

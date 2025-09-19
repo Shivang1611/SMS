@@ -662,7 +662,7 @@ export default function Allteacher() {
 
       <div className="flex flex-col flex-1 min-w-0 overflow-hidden transition-all duration-300">
         <Header isDark={isDark} className="w-full flex items-center justify-between px-4 shadow-sm transition-all duration-300"  />
-         <div className="flex-1 overflow-y-auto p-8">
+         <div className="flex-1 p-8  overflow-y-scroll  [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
             <h1 className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-800'}`}>
                 Manage <span className="text-purple-600">Teachers</span>
               </h1>

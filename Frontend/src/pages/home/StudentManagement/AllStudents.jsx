@@ -73,16 +73,10 @@ export default function AllStudents() {
 
   return (
     <div className={`flex h-screen ${isDark ? 'bg-gray-900' : 'bg-gray-50'}`}>
-      <aside className="flex-shrink-0 transition-all duration-300">
-        <Sidebar 
-          isSidebarExpanded={isSidebarExpanded}
-          setIsSidebarExpanded={setIsSidebarExpanded}
-        />
-      </aside>
+      
 
       <div className="flex flex-col flex-1 min-w-0 overflow-hidden transition-all duration-300">
-        <Header isDark={isDark} className="w-full flex items-center justify-between px-4 shadow-sm transition-all duration-300" />
-        
+       
         <div className="flex-1 p-8 overflow-y-scroll  [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
          
           <div className="mb-8">

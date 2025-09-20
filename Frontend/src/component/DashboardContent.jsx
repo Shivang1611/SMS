@@ -36,12 +36,16 @@ import {
 import { useTheme } from "../context/ThemeContext";
 import logo from "../assets/logo.jpg"
 import { useNavigate } from "react-router-dom";
+import { useTeachers } from "../context/TeacherContext";
+import { useStudents } from "../context/StudentContext";
 
 
 export function DashboardContent(){
 
       const { isDark } = useTheme();
       const navigator = useNavigate();
+      const { teachers } = useTeachers();
+      const { students } = useStudents();
   
   return (
     <div className="h-full  overflow-y-scroll  [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden ">
@@ -59,7 +63,7 @@ export function DashboardContent(){
           <div className="flex items-center justify-between">
             <div>
               <p className={`text-sm font-medium ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>Total Students</p>
-              <p className={`text-3xl font-bold ${isDark ? 'text-white' : 'text-slate-800'} mt-1`}>2,847</p>
+              <p className={`text-3xl font-bold ${isDark ? 'text-white' : 'text-slate-800'} mt-1`}>{students.length}</p>
               <p className="text-sm text-green-500 mt-1">↗ 12% this month</p>
             </div>
             <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center">
@@ -72,7 +76,7 @@ export function DashboardContent(){
           <div className="flex items-center justify-between">
             <div>
               <p className={`text-sm font-medium ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>Active Teachers</p>
-              <p className={`text-3xl font-bold ${isDark ? 'text-white' : 'text-slate-800'} mt-1`}>156</p>
+              <p className={`text-3xl font-bold ${isDark ? 'text-white' : 'text-slate-800'} mt-1`}>{teachers.length}</p>
               <p className="text-sm text-green-500 mt-1">↗ 8% this month</p>
             </div>
             <div className="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center">

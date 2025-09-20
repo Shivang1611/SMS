@@ -16,14 +16,15 @@ import {
   Calendar,
   Award,
   Activity,
-  BellIcon
+  BellIcon,
+  Search
 } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
-
- 
+import { useSearch } from "../../context/SearchContext";
  export default function Header() {
    const { isDark, toggleTheme } = useTheme();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const { openSearch } = useSearch();
     const [showNotifications, setShowNotifications] = useState(false);
     const notificationRef = useRef(null);
   const notifications = [
@@ -34,19 +35,33 @@ import { useNavigate } from "react-router-dom";
   ];
 
   const unreadCount = notifications.filter(n => n.unread).length;
-  useEffect(() => {
-  // Function to handle clicks outside the component
-  function handleClickOutside(event) {
-    if (notificationRef.current && !notificationRef.current.contains(event.target)) {
-      setShowNotifications(false); // Close the notifications
-    }
-  }document.addEventListener("mousedown", handleClickOutside);
+        useEffect(() => {
+        // Function to handle clicks outside the component
+        function handleClickOutside(event) {
+          if (notificationRef.current && !notificationRef.current.contains(event.target)) {
+            setShowNotifications(false); // Close the notifications
+          }
+        }document.addEventListener("mousedown", handleClickOutside);
 
-  // Clean up the event listener when the component unmounts
-  return () => {
-    document.removeEventListener("mousedown", handleClickOutside);
-  };
-}, [notificationRef, setShowNotifications]);
+        // Clean up the event listener when the component unmounts
+        return () => {
+          document.removeEventListener("mousedown", handleClickOutside);
+        };
+      }, [notificationRef, setShowNotifications]);
+
+  // Handle keyboard shortcut for search (Ctrl+K or Cmd+K)
+        useEffect(() => {
+          const handleKeyDown = (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+              e.preventDefault();
+              openSearch();
+            }
+          };
+
+          document.addEventListener('keydown', handleKeyDown);
+          return () => document.removeEventListener('keydown', handleKeyDown);
+        }, [openSearch]);
+
    return (
    <>
   <header className={` ${
@@ -68,6 +83,35 @@ import { useNavigate } from "react-router-dom";
           day: "numeric",
         })}
       </div>
+         {/* Right side controls */}
+        <div className="flex items-center space-x-4">
+          {/* Global Search Button */}
+          <button
+            onClick={openSearch}
+            className={`flex items-center space-x-3 px-4 py-2 rounded-xl transition-all duration-300 ${
+              isDark
+                ? "text-gray-300 bg-gray-700/50 hover:bg-gray-600/50 border border-gray-600"
+                : "text-slate-600 bg-slate-100 hover:bg-slate-200 border border-slate-200"
+            } transform hover:scale-105 min-w-[200px] justify-between`}
+          >
+            <div className="flex items-center space-x-2">
+              <Search size={18} />
+              <span className="text-sm">Search anything...</span>
+            </div>
+            <div className="flex items-center space-x-1">
+              <kbd className={`px-1.5 py-0.5 text-xs rounded border ${
+                isDark ? 'border-gray-500 bg-gray-600' : 'border-gray-300 bg-white'
+              }`}>
+                {navigator.platform.includes('Mac') ? '⌘' : 'Ctrl'}
+              </kbd>
+              <kbd className={`px-1.5 py-0.5 text-xs rounded border ${
+                isDark ? 'border-gray-500 bg-gray-600' : 'border-gray-300 bg-white'
+              }`}>
+                K
+              </kbd>
+            </div>
+          </button>
+        </div>
 
       <div className="flex items-center space-x-4">
         {/* Theme Toggle */}
